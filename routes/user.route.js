@@ -8,14 +8,14 @@ module.exports = function(passport, router) {
         var password = req.body.password;
         console.log(req.body);
         if (!username || !password) {
-            return res.status(500).send('Username and password is required.');
+            return res.status(500).send(JSON.stringify({result: 'Username and password is required.'}));
         } else {
             var user = new userModel({ username: username, password: password });
             user.save(function(error) {
                 if (error) {
                     return res.status(500).send(error);
                 }
-                return res.status(200).send('Registration success');
+                return res.status(200).send(JSON.stringify({result: 'Registration success'}));
             });
         }
     });
@@ -27,9 +27,9 @@ module.exports = function(passport, router) {
             } else {
                 req.logIn(user, function(error) {
                     if (error) {
-                        return res.status(500).send('Request login failed');
+                        return res.status(500).send(JSON.stringify({result: 'Request login failed'}));
                     } else {
-                        return res.status(200).send('You are free to pass');
+                        return res.status(200).send(JSON.stringify({result: 'You are free to pass'}));
                     }
                 });
             }
@@ -39,17 +39,17 @@ module.exports = function(passport, router) {
     router.post('/logout', function(req, res, next) {
         if (req.isAuthenticated()) {
             req.logout();
-            res.status(200).send('Logout successful');
+            res.status(200).send(JSON.stringify({result: 'Logout successful'}));
         } else {
-            res.status(500).send('You have no right');
+            res.status(500).send(JSON.stringify({result: 'You have no right'}));
         }
     });
 
     router.get('/greeting', function(req, res, next) {
         if (req.isAuthenticated()) {
-            return res.status(200).send('hello!');
+            return res.status(200).send(JSON.stringify({result: 'hello!'}));
         } else {
-            return res.status(500).send('stop that');
+            return res.status(500).send(JSON.stringify({result: 'stop that'}));
         }
     });
 
