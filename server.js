@@ -17,7 +17,7 @@ var dbUrl = 'mongodb://Admin:admin@ds117189.mlab.com:17189/prfquiz';
 
 var app = express();
 app.set('dbUrl', dbUrl);
-mongoose.connect(dbUrl);
+mongoose.connect(dbUrl,{useMongoClient: true});
 
 mongoose.connection.on('connected', function() {
     console.log('Mongoose default connection open');
