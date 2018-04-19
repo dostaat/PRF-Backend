@@ -13,7 +13,7 @@ require('./models/user.model');
 var userModel = mongoose.model('user');
 
 // Connect to MongoDB...
-var dbUrl = 'mongodb://PrfIsLove:prf4ever@ds117189.mlab.com:17189/prfquiz';
+var dbUrl = 'mongodb://tUser:password123@ds117189.mlab.com:17189/prfquiz';
 
 var app = express();
 app.set('dbUrl', dbUrl);
