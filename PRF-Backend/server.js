@@ -61,7 +61,12 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use(expressSession({ secret: 'thegreatandsecretshow' }));
+app.use(expressSession({ 
+    secret: 'thegreatandsecretshow',
+    resave: true,
+    saveUninitialized: false
+}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 

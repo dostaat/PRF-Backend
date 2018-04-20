@@ -3,20 +3,41 @@ var userModel = mongoose.model('user');
 
 module.exports = function(passport, router) {
 
-    router.post('/register', function(req, res, next) {
-        var username = req.body.username;
-        var password = req.body.password;
+    router.post('/register', function(req, res, next) {        
         console.log(req.body);
-        if (!username || !password) {
-            return res.status(500).send(JSON.stringify({result: 'Username and password is required.'}));
+        if (req.body.email &&
+          req.body.username &&
+          req.body.password &&
+          req.body.passwordConf) {
+
+          var userData = {
+            email: req.body.email,
+            username: req.body.username,
+            password: req.body.password,
+            passwordConf: req.body.passwordConf,
+          }
+
+          //use schema.create to insert data into the db
+          userModel.create(userData, function (error, user) {
+            if (error) {
+              return res.status(500).send(err);//next(err)
+            } else {
+              return res.status(200).send(JSON.stringify(
+                    {result: 'Registration success'})
+                );
+              //return res.redirect('/profile');
+            }
+          });
+        }
+    });
+    
+ // GET route after registering
+    router.get('/profile', function (req, res, next) {
+        if(req.isAuthenticated()){
+            return res.json({ user: req.user.username,  email: req.user.email });
         } else {
-            var user = new userModel({ username: username, password: password });
-            user.save(function(error) {
-                if (error) {
-                    return res.status(500).send(error);
-                }
-                return res.status(200).send(JSON.stringify({result: 'Registration success'}));
-            });
+            return res.status(500).send(JSON.stringify(
+                            {result: 'Login requested!'}));
         }
     });
 
@@ -27,9 +48,14 @@ module.exports = function(passport, router) {
             } else {
                 req.logIn(user, function(error) {
                     if (error) {
-                        return res.status(500).send(JSON.stringify({result: 'Request login failed'}));
+                        return res.status(500).send(JSON.stringify(
+                            {result: 'Request login failed'})
+                        );
                     } else {
-                        return res.status(200).send(JSON.stringify({result: 'You are free to pass'}));
+                        return res.redirect('/greeting');
+                        /*return res.status(200).send(JSON.stringify(
+                            {result: 'You are free to pass'})
+                        );*/
                     }
                 });
             }
