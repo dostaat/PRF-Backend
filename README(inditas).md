@@ -4,11 +4,22 @@ A projektindítás kiegészítve shell scriptekkel!
 
 Utána pedig:
 
+docker exec -it node /bin/bash
+cd PRF-Backend
+npm install
+node server.js
+
+//masik terminalba angular inditashoz meg:
+
 docker exec -it angular /bin/bash
 cd /var/munka/
 npm install
 chmod -R 777 .
 ng serve --host 0.0.0.0
+
+//leallitas, docker kiloves, stb.:
+
+./destroy.sh
 
 
 1. Kérdés: hogyan lehet összehangolni különböző gépeken futó szervert és klienst a bemutatóhoz?
