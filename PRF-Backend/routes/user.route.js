@@ -14,7 +14,6 @@ module.exports = function(passport, router) {
             email: req.body.email,
             username: req.body.username,
             password: req.body.password,
-            passwordConf: req.body.passwordConf,
           }
 
           //use schema.create to insert data into the db
@@ -49,14 +48,18 @@ module.exports = function(passport, router) {
                 req.logIn(user, function(error) {
                     if (error) {
                         return res.status(500).send(JSON.stringify(
-                            {result: 'Request login failed'})
+                            {result: 'Request login failed '+error})
                         );
                     } else {
-                        return res.redirect('/greeting');
-                        /*return res.status(200).send(JSON.stringify(
-                            {result: 'You are free to pass'})
-                        );*/
-                    }
+                        if (user.isAdmin()){
+                            return res.status(200).send(JSON.stringify(
+                                {result: 'Welcome Admin'}));
+                        } else {
+                            return res.status(200).send(JSON.stringify(
+                                {result: 'You are free to pass'}));
+                        }
+                      }
+                    
                 });
             }
         })(req, res, next);
@@ -81,3 +84,4 @@ module.exports = function(passport, router) {
 
     return router;
 }
+

@@ -18,63 +18,31 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  passwordConf: {
+  role: {
     type: String,
-    required: true,
+    enum: ['player', 'admin'],
+    default: 'player',
+  },
+  score: {
+    type: Number,
+    default: 0,
+    required: false,
   }
 }, { collection: 'user' });
 
-/*userSchema.pre('save', function(next) {
-
-    var user = this;
-
-    if (user.isModified('password') && user.isModified('passwordConf') ) {
-        bcrypt.genSalt(10, function(error, salt) {
-
-            if (error) {
-                return next(error);
-            }
-
-            bcrypt.hash(user.password, salt, function(error, hash) {
-
-                if (error) {
-                    return next(error);
-                }
-
-                user.password = hash;
-                //next();
-            });
-            
-            bcrypt.hash(user.passwordConf, salt, function(error, hash) {
-
-                if (error) {
-                    return next(error);
-                }
-
-                user.passwordConf = hash;
-                next();
-            });
-        });
-    } else {
-        return next();
-    }
-
-});*/
+userSchema.methods.isAdmin = function(){
+    return this.role === "admin";    
+};
 
 //hashing a password before saving it to the database
-userSchema.pre('save', function (next) {
+//we assume that password==passwordConf has been compared in the frontEnd
+userSchema.pre('save', function (next) { 
   var user = this;
   bcrypt.hash(user.password, 10, function (err, hash){
     if (err) {
       return next(err);
     }
     user.password = hash;
-  })
-  bcrypt.hash(user.passwordConf, 10, function (err, hash){
-    if (err) {
-      return next(err);
-    }
-    user.passwordConf = hash;
     next();
   })
 });
