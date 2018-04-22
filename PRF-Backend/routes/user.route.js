@@ -7,8 +7,7 @@ module.exports = function(passport, router) {
         console.log(req.body);
         if (req.body.email &&
           req.body.username &&
-          req.body.password &&
-          req.body.passwordConf) {
+          req.body.password ) {
 
           var userData = {
             email: req.body.email,
