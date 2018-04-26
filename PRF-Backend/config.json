@@ -1,0 +1,5 @@
+{
+    "connectionString": "mongodb://admin:prfPassword123@ds117189.mlab.com:17189/prfquiz",
+    "apiUrl": "http://localhost:5000",
+    "secret": "TheAnswerForTheQuestionOfQuestionsIs42"
+}

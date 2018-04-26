@@ -4,6 +4,12 @@ var expressSession = require('express-session');
 var LocalStrategy = require('passport-local');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
+var app = express();
+
+var config = require('./config.json');
+var cors = require('cors');
+var expressJwt = require('express-jwt');
+app.use(cors());
 
 // Mongoose ODM...
 var mongoose = require('mongoose');
@@ -13,9 +19,8 @@ require('./models/user.model');
 var userModel = mongoose.model('user');
 
 // Connect to MongoDB...
-var dbUrl = 'mongodb://admin:prfPassword123@ds117189.mlab.com:17189/prfquiz';
+var dbUrl = config.connectionString;
 
-var app = express();
 app.set('dbUrl', dbUrl);
 mongoose.connect(dbUrl,{useMongoClient: true});
 
@@ -61,8 +66,28 @@ app.use(function(req, res, next) {
   next();
 });
 
+// use JWT auth to secure the api, the token can be passed in the authorization header or querystring
+app.use(expressJwt({
+    secret: config.secret,
+    getToken: function (req) {
+        if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+            return req.headers.authorization.split(' ')[1];
+        } else if (req.query && req.query.token) {
+            return req.query.token;
+        }
+        return null;
+    }
+}).unless({ path: [
+        '/users/authenticate',
+        '/users/register',
+        '/rest/user/greeting',
+        '/rest/user/register',
+        '/rest/user/login'
+        ] 
+}));
+
 app.use(expressSession({ 
-    secret: 'thegreatandsecretshow',
+    secret: config.secret,
     resave: true,
     saveUninitialized: false
 }));
@@ -70,6 +95,7 @@ app.use(expressSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/users', require('./controllers/users.controller'));
 app.use('/rest/user', require('./routes/user.route')(passport, express.Router()));
 
 app.listen(5000, function() {

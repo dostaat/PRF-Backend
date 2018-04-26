@@ -14,9 +14,18 @@ var userSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  firstName: {
+    type: String
+  },
+  lastName: {
+    type: String
+  },
   password: {
     type: String,
     required: true,
+  },
+  hash: {
+    type: String
   },
   role: {
     type: String,
@@ -38,13 +47,15 @@ userSchema.methods.isAdmin = function(){
 //we assume that password==passwordConf has been compared in the frontEnd
 userSchema.pre('save', function (next) { 
   var user = this;
-  bcrypt.hash(user.password, 10, function (err, hash){
+  user.hash = bcrypt.hashSync(user.password, 10);
+  /*bcrypt.hash(user.password, 10, function (err, hash){
     if (err) {
       return next(err);
     }
-    user.password = hash;
+    //user.password = hash;
     next();
-  })
+  })*/
+  next();
 });
 
 
