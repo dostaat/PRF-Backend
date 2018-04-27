@@ -20,10 +20,6 @@ var userSchema = new mongoose.Schema({
   lastName: {
     type: String
   },
-  password: {
-    type: String,
-    required: true,
-  },
   hash: {
     type: String
   },
@@ -37,26 +33,15 @@ var userSchema = new mongoose.Schema({
     default: 0,
     required: false,
   }
+  /*password: {
+    type: String
+    //required: true,
+  },*/
 }, { collection: 'user' });
 
 userSchema.methods.isAdmin = function(){
     return this.role === "admin";    
 };
-
-//hashing a password before saving it to the database
-//we assume that password==passwordConf has been compared in the frontEnd
-userSchema.pre('save', function (next) { 
-  var user = this;
-  user.hash = bcrypt.hashSync(user.password, 10);
-  /*bcrypt.hash(user.password, 10, function (err, hash){
-    if (err) {
-      return next(err);
-    }
-    //user.password = hash;
-    next();
-  })*/
-  next();
-});
 
 
 userSchema.methods.comparePassword = function(password, next) {

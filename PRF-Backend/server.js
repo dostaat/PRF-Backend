@@ -1,10 +1,16 @@
+/********
+A ki kommentelt fuggosegek eltavolithatoak a package.json-bol
+ hiszen nem hasznaljuk oket... el is tavolitom...
+*/
+
 var express = require('express');
-var passport = require('passport');
+//var passport = require('passport');
 var expressSession = require('express-session');
-var LocalStrategy = require('passport-local');
+//var LocalStrategy = require('passport-local');
 var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
+//var cookieParser = require('cookie-parser');
 var app = express();
+require('./models/user.model');
 
 var config = require('./config.json');
 var cors = require('cors');
@@ -13,10 +19,6 @@ app.use(cors());
 
 // Mongoose ODM...
 var mongoose = require('mongoose');
-
-require('./models/user.model');
-
-var userModel = mongoose.model('user');
 
 // Connect to MongoDB...
 var dbUrl = config.connectionString;
@@ -32,39 +34,9 @@ mongoose.connection.on('error', function(err) {
     console.log('Mongoose default connection error: ' + err);
 });
 
-//var user = new User({username: "Larry2", password: "asdasd"});
-//user.save();
 
-app.use(bodyParser.urlencoded({ 'extended': 'true' }));
-app.use(cookieParser());
-
-passport.serializeUser(function(user, done) {
-    done(null, user);
-});
-
-passport.deserializeUser(function(user, done) {
-    done(null, user);
-});
-
-passport.use('login', new LocalStrategy.Strategy(function(username, password, done) {
-    userModel.findOne({ username: username }, function(err, temp_user) {
-        console.log('searching for the login');
-        console.log(temp_user);
-        if (err) { return done(err); }
-        if (!temp_user) { return done(null, false); }
-        temp_user.comparePassword(password, function(err, isMatch) {
-            if (err) return done(err);
-            console.log(isMatch);
-        });
-        return done(null, temp_user);
-    });
-}));
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(bodyParser.urlencoded({ 'extended': false }));
+app.use(bodyParser.json());
 
 // use JWT auth to secure the api, the token can be passed in the authorization header or querystring
 app.use(expressJwt({
@@ -80,9 +52,7 @@ app.use(expressJwt({
 }).unless({ path: [
         '/users/authenticate',
         '/users/register',
-        '/rest/user/greeting',
-        '/rest/user/register',
-        '/rest/user/login'
+        //ide kell meg bemasolni azokat az eleresi utakat, amikhez nem kell bejelentkezni        
         ] 
 }));
 
@@ -92,11 +62,7 @@ app.use(expressSession({
     saveUninitialized: false
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use('/users', require('./controllers/users.controller'));
-app.use('/rest/user', require('./routes/user.route')(passport, express.Router()));
 
 app.listen(5000, function() {
     console.log('The server is running');

@@ -15,8 +15,6 @@ import { ErrorInterceptorProvider } from './_helpers/error.interceptor';
 import { AlertService } from './utils/alert.service';
 
 import { AppComponent } from './app.component';
-import { MainComponent } from './main/main.component';
-import { AboutComponent } from './about/about.component';
 import { AlertComponent } from './_directives/alert/alert.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -26,8 +24,6 @@ import { RegisterComponent } from './register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent,
-    AboutComponent,
     AlertComponent,
     HomeComponent,
     LoginComponent,

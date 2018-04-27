@@ -9,13 +9,10 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^7.0.4",
-    "@types/passport": "^0.3.2",
-    "@types/passport-local": "^1.0.29",
     "Buffer": "0.0.0",
     "bcrypt": "^1.0.2",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.16.0",
-    "cookie-parser": "^1.4.3",
     "cors": "^2.8.4",
     "events": "^1.1.1",
     "express": "^4.14.1",
@@ -31,8 +28,6 @@
     "mongoose": "^4.8.4",
     "mongoskin": "^2.1.0",
     "net": "^1.0.2",
-    "passport": "^0.3.2",
-    "passport-local": "^1.0.0",
     "q": "^1.5.1",
     "typescript": "^2.1.5"
   }

@@ -1,12 +1,3 @@
-/*import { Injectable } from '@angular/core';
-
-@Injectable()
-export class UserService {
-
-  constructor() { }
-
-}
-*/
 ﻿import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -18,6 +9,7 @@ export class UserService {
     constructor(private http: HttpClient) { }
 
     getAll() {
+        console.log("a keres elment");
         return this.http.get<User[]>(appConfig.apiUrl + '/users');
     }
 

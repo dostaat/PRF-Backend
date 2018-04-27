@@ -1,3 +1,6 @@
+/****
+EZ a fajl mar nincs is hasznalva. de azert megtartjuk mintanak
+*/
 var mongoose = require('mongoose');
 var userModel = mongoose.model('user');
 

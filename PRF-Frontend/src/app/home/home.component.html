@@ -4,7 +4,7 @@
   <h3>All registered users:</h3>
   <ul>
       <li *ngFor="let user of users">
-          {{user.username}} ({{user.email}} {{user.role}})
+         {{user._id}} {{user.username}} ({{user.email}} {{user.role}})
           - <a (click)="deleteUser(user._id)">Delete</a>
       </li>
   </ul>
