@@ -3,4 +3,4 @@
 
 docker stop node angular
 docker rm node angular
-docker rmi node angular-workbench
+docker rmi node-backend angular-workbench
