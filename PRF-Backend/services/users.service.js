@@ -34,6 +34,10 @@ function authenticate(username, password) {
                 _id: user._id,
                 username: user.username,
                 email: user.email,
+                firstName: user.firstName,
+                lastName:user.lastName,
+                role: user.role,
+                score: user.score,
                 token: jwt.sign({ sub: user.username }, config.secret)
             });
         } else {
