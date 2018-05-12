@@ -6,18 +6,11 @@ var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 var Q = require('q');
 
-var config = require('../config.json');
-var _ = require('lodash');
-var jwt = require('jsonwebtoken');
-var bcrypt = require('bcryptjs');
-var Q = require('q');
-
 var mongoose = require('mongoose');
-var cityModel = mongoose.model('Cities');
+var cityModel = mongoose.model('city');
  
 var service = {};
  
-service.authenticate = authenticate;
 service.getAll = getAll;
 service.getById = getById;
 service.create = create;
@@ -25,7 +18,6 @@ service.update = update;
 service.delete = _delete;
  
 module.exports = service;
- 
  
 function getAll() {
     var deferred = Q.defer();

@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcryptjs');
 
 var citySchema = new mongoose.Schema({
   name: {
@@ -8,21 +7,26 @@ var citySchema = new mongoose.Schema({
     required: true,
     trim: true
   },
-  point: {
-    type: number
+  point:{
+    type: Number,
+    default: 0,
+    required: false,
   },
-  x_cordinate: {
-    type: number
+  x_cordinate:{
+    type: Number,
+    default: 0,
+    required: false,
   },
   y_cordinate: {
-    type: number
+    type: Number,
+    default: 0,
+    required: false,
   },
 }, { collection: 'city' });
 
 citySchema.methods.getPoint = function(){
     return this.point;    
 };
-
 
 var City = mongoose.model('city', citySchema);
 module.exports = City;
