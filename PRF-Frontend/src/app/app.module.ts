@@ -19,6 +19,8 @@ import { AlertComponent } from './_directives/alert/alert.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { StatisticComponent } from './statistic/statistic.component';
+import { CityService } from './utils/cities.service';
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { RegisterComponent } from './register/register.component';
     AlertComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    StatisticComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import { RegisterComponent } from './register/register.component';
         AuthenticationService,
         AlertService,
         UserService,
+        CityService,
         JwtInterceptorProvider,
         ErrorInterceptorProvider
     ],

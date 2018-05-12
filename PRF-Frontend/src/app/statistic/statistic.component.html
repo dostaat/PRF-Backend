@@ -1,0 +1,28 @@
+<div class="col-md-6 col-md-offset-3">
+    <h2 class = "text-center"> Welcome to the statistic page {{currentUser.username}}!</h2>
+    <h3 class = "text-center">Best results from this citi:</h3>
+    <div class = "text-center">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>score</th>
+            <th>name</th>
+            <th>x-cordinate</th>
+            <th>y_cordinate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let city of cities">
+            <td> {{city.score}}</td>
+            <td> {{city.name}}</td>
+            <td> {{city.x_cordinate}}</td>
+            <td> {{city.y_cordinate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="text-center"> 
+        <p><a class="btn btn-success btn-lg" [routerLink]="['/home']">back to menu</a></p>
+    </div>
+  </div>
+  

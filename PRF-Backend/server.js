@@ -11,6 +11,8 @@ var bodyParser = require('body-parser');
 //var cookieParser = require('cookie-parser');
 var app = express();
 require('./models/user.model');
+require('./models/cities.model');
+
 
 var config = require('./config.json');
 var cors = require('cors');
@@ -63,6 +65,9 @@ app.use(expressSession({
 }));
 
 app.use('/users', require('./controllers/users.controller'));
+
+app.use('/cities', require('./controllers/cities.controller'));
+
 
 app.listen(5000, function() {
     console.log('The server is running');
