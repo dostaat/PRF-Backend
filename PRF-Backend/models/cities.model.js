@@ -14,12 +14,12 @@ var citySchema = new mongoose.Schema({
   },
   x_cordinate:{
     type: Number,
-    default: 0,
+    default: 100,
     required: false,
   },
   y_cordinate: {
     type: Number,
-    default: 0,
+    default: 50,
     required: false,
   },
 }, { collection: 'city' });
@@ -28,5 +28,11 @@ citySchema.methods.getPoint = function(){
     return this.point;    
 };
 
+citySchema.methods.getX = function(){
+  return this.x_cordinate;    
+};
+citySchema.methods.getY = function(){
+  return this.y_cordinate;    
+};
 var City = mongoose.model('city', citySchema);
 module.exports = City;
