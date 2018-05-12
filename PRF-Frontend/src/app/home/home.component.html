@@ -13,11 +13,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 <div class="container-fluid">
     <h1 class="text-center">Hi {{currentUser.username}}!</h1>
-    <h2 class="text-center"><small> You logged in as a non admin user :) </small></h2>
+    <h2 class="text-center" id="small_text"><small> You logged in as a non admin user :) </small></h2>
     <p class="text-center">Lets deside what you want to do!</p>
     <div class="text-center"> 
         <p><a class="btn btn-success btn-lg" [routerLink]="['/statistic']">Statistic</a></p>
-        <p><a class="btn btn-success btn-lg" [routerLink]="['/quizme']">Quiz me!</a></p>
+        <p><a class="btn btn-success btn-lg" id="PlayerButton" [routerLink]="['/quizme']">Quiz me!</a></p>
+        <p><a class="btn btn-success btn-lg" id="AdminButton" [routerLink]="['/questionbank']">Admin button</a></p>
         <p><a class="btn btn-primary btn-lg center-block" [routerLink]="['/login']">Logout</a></p>
-    </div>
 </div>
