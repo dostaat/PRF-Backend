@@ -21,6 +21,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { CityService } from './utils/cities.service';
+import { QuizComponent } from './quiz/quiz.component';
+import { QuizService } from './utils/quiz.service';
 
 
 @NgModule({
@@ -30,7 +32,8 @@ import { CityService } from './utils/cities.service';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    StatisticComponent
+    StatisticComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +48,7 @@ import { CityService } from './utils/cities.service';
         AlertService,
         UserService,
         CityService,
+        QuizService,
         JwtInterceptorProvider,
         ErrorInterceptorProvider
     ],

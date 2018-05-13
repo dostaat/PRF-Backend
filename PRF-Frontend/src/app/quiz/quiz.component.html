@@ -1,0 +1,13 @@
+<div class="col-md-6 col-md-offset-3">
+  <h2 class = "text-center"> Welcome to the game page {{currentUser.username}}!</h2>
+  <div *ngIf="quiz!==undefined" class = "text-center">
+     <p>{{quiz.question}}</p>
+      <p> {{quiz.first_answer}}</p>
+      <p> {{quiz.second_answer}}</p>
+      <p> {{quiz.third_answer}}</p>
+      <p> {{quiz.fourth_answer}}</p>
+  </div>
+  <div class="text-center"> 
+      <p><a class="btn btn-success btn-lg" [routerLink]="['/home']">back to menu</a></p>
+  </div>
+</div>
