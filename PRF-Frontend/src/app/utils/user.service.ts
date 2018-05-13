@@ -22,6 +22,7 @@ export class UserService {
     }
 
     update(user: User) {
+        console.log("user service a front enden");
         return this.http.put(appConfig.apiUrl + '/users/' + user._id, user);
     }
 

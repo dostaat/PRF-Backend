@@ -4,6 +4,7 @@ import { User } from '../_models/user';
 import { UserService } from '../utils/user.service';
 import { QuizService } from '../utils/quiz.service';
 import { Quiz } from '../_models/quiz';
+import { AlertService } from '../utils/alert.service';
 
 
 @Component({
@@ -17,12 +18,19 @@ export class QuizComponent implements OnInit {
   quiz: Quiz;
   questions: Quiz[] = [];
   returnUrl: string;
+  lost: boolean;
+  questionNum: number;
+  gamePoints: number;
 
   constructor(private userService: UserService, 
     private quizService: QuizService,
     private route: ActivatedRoute,
-    private router: Router,) {
+    private router: Router,
+    private alertService: AlertService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.lost = false;
+    this.questionNum = 0;
+    this.gamePoints = 0;
   }
 
   ngOnInit() {
@@ -39,6 +47,26 @@ export class QuizComponent implements OnInit {
 
   private loadRandomQuestion() {
     this.quizService.getRandomQuestion().subscribe( quiz => { this.quiz = quiz;  });
+  }
+
+  checkAnswer(ans: string) {
+    if(ans === this.quiz.answer) {
+      this.currentUser.score += this.quiz.level;
+      this.userService.update(this.currentUser);
+      this.gamePoints += this.quiz.level;
+      this.questionNum++; 
+      console.log(this.currentUser.score);
+    } else {
+      this.lost = true;
+      this.questionNum = 0;
+    }
+  }
+
+  reset() {
+    this.lost = false;
+    this.questionNum = 0;
+    this.gamePoints = 0;
+    this.loadRandomQuestion();
   }
 
 }

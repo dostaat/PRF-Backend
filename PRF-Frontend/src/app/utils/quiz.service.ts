@@ -13,7 +13,7 @@ export class QuizService {
         console.log("a quiz keres elment");
         return this.http.get<Quiz[]>(appConfig.apiUrl + '/quiz');
     }
-    
+
     getRandomQuestion() {
         return this.http.get<Quiz>(appConfig.apiUrl + '/quiz/random');
     }
