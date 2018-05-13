@@ -12,12 +12,12 @@ var citySchema = new mongoose.Schema({
     default: 0,
     required: false,
   },
-  x_cordinate:{
+  x_coordinate:{
     type: Number,
     default: 100,
     required: false,
   },
-  y_cordinate: {
+  y_coordinate: {
     type: Number,
     default: 50,
     required: false,
