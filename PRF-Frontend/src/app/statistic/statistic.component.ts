@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../_models/user';
 import { UserService } from '../utils/user.service';
@@ -12,7 +12,7 @@ import { Cities } from '../_models/cities';
 })
  
  
-export class StatisticComponent implements OnInit {
+export class StatisticComponent implements OnInit, OnChanges {
     currentUser: User;
     users: User[] = [];
     cities: Cities[] = [];
@@ -23,6 +23,10 @@ export class StatisticComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    }
+
+    ngOnChanges() {
+        this.loadAllCities();
     }
  
     ngOnInit() {
@@ -38,6 +42,19 @@ export class StatisticComponent implements OnInit {
     }
 
     private loadAllCities() {
-        this.citiesService.getAll().subscribe(cities => { this.cities = cities; });
-    }    
+        this.citiesService.getAll().subscribe(cities => { 
+            this.cities = cities;
+            this.orderCitiesByPoints();
+        });
+    }
+    
+    private orderCitiesByPoints() {
+        this.cities.sort((city1, city2) => {
+            return city1.point - city2.point;
+        })
+    }
 }
+
+
+
+

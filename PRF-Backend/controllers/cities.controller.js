@@ -7,6 +7,7 @@ var cityService = require('../services/cities.service');
 router.get('/', getAll);
 router.get('/current', getCurrent);
 router.put('/:_id', update);
+router.post('/getClosest',getClosest);
  
 module.exports = router;
 
@@ -43,4 +44,16 @@ function update(req, res) {
         .catch(function (err) {
             res.status(400).send(err);
         });
+}
+
+function getClosest(req,res) {
+    console.log("Request arrived to server" + req.body);
+    cityService.getClosest(req.body.x_coord,req.body.y_coord)
+    .then(function (nearbyCities) {
+        res.send(nearbyCities)        
+    })
+    .catch(function (err) {
+        res.status(400).send(err);
+    });
+
 }

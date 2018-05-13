@@ -16,6 +16,7 @@ service.getById = getById;
 service.create = create;
 service.update = update;
 service.delete = _delete;
+service.getClosest = getClosest;
  
 module.exports = service;
  
@@ -143,5 +144,41 @@ function _delete(_id) {
             deferred.resolve();
         });
  
+    return deferred.promise;
+}
+
+function getClosest(coordX, coordY) {
+    var deferred = Q.defer();
+    
+    cityModel.find({}, function (err, cities) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+ 
+        cities = _.map(cities, function (cities) {
+            return _.omit(cities, 'hash');
+        });
+    
+        //console.log("coords" + coordX + " " +coordY);                        
+        cities.sort( function(a,b) {
+            function dist(p,qy,qx) {
+          //      console.log("px: " + p.x_coordinate +" py: " + p.y_coordinate);
+          //      console.log("Calculations:");
+          //      console.log(p.x_coordinate); console.log(qx);console.log("==="); console.log(p.x_coordinate-qx);
+          //      console.log(Math.pow((p.x_coordinate-qx),2));
+                return Math.sqrt(Math.pow((p.x_coordinate-qx),2)+Math.pow((p.y_coordinate-qy),2));
+            }
+          //  console.log("compare" + a + b);
+          //  console.log("distances are: " + dist(a,coordX,coordY) + "***\n****" + dist(b,coordX,coordY));
+            if (dist(a,coordX,coordY) > dist(b,coordX,coordY)) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+
+        //console.log(cities);
+ 
+        deferred.resolve(cities);
+    });
+    
     return deferred.promise;
 }
