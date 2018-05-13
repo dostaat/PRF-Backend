@@ -55,6 +55,7 @@ app.use(expressJwt({
 }).unless({ path: [
         '/users/authenticate',
         '/users/register',
+        '/cities/getClosest',
         //ide kell meg bemasolni azokat az eleresi utakat, amikhez nem kell bejelentkezni        
         ] 
 }));

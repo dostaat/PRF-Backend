@@ -12,5 +12,6 @@ docker run -t -d --name ionic -p 8100:8100 -v $PWD/PRF-Mobile:/var/munka/QuickQu
 wait
 
 # Run only this 2 line if some new dependency is added
+docker exec -it ionic ./startup.sh
 docker exec -it node ./startup.sh
 docker exec -it angular ./startup.sh
