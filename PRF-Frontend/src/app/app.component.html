@@ -11,6 +11,9 @@
 <!-- credits -->
 <div class="text-center">
     <p>
-        <a href="https://github.com/dostaat/PRF-Backend" target="_top">Quiz Poject Repository</a>
+        <a href="https://github.com/dostaat/PRF-Backend" target="_top">Quiz Poject Repository</a>        
     </p>
+    <form (ngSubmit)="setUrl()">
+        <button [disabled]="loading" class="btn btn-primary">Set server URL</button>    
+    </form>
 </div>

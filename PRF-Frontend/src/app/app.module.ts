@@ -21,6 +21,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { CityService } from './utils/cities.service';
+import { SecureComponent } from './layouts/secure/secure.component';
+import { PublicComponent } from './layouts/public/public.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { QuizService } from './utils/quiz.service';
 
@@ -33,7 +35,9 @@ import { QuizService } from './utils/quiz.service';
     LoginComponent,
     RegisterComponent,
     StatisticComponent,
-    QuizComponent
+    QuizComponent,
+    SecureComponent,
+    PublicComponent
   ],
   imports: [
     BrowserModule,
