@@ -5,7 +5,7 @@ var quizService = require('../services/quiz.service');
  
 // routes
 router.get('/', getAll);
-router.post('/random', getRandom);
+router.get('/random', getRandom);
  
 module.exports = router;
 
