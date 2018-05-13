@@ -124,6 +124,7 @@ function create(userParam) {
 }
  
 function update(_id, userParam) {
+    console.log("user service a backenden első rész");
     var deferred = Q.defer();
  
     // validation
@@ -150,11 +151,14 @@ function update(_id, userParam) {
     });
  
     function updateUser() {
+        console.log("user service a backenden");
         // fields to update
         var set = {
             firstName: userParam.firstName,
             lastName: userParam.lastName,
             username: userParam.username,
+            score: userParam.score,
+            email: userParam.email,
         };
  
         // update password if it was entered

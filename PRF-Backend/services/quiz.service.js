@@ -12,7 +12,7 @@ var quizModel = mongoose.model('quiz');
 var service = {};
  
 service.getAll = getAll;
-service.getRandomQuestion =getRandomQuestion;
+service.getRandomQuestion = getRandomQuestion;
  
 module.exports = service;
  
@@ -48,4 +48,4 @@ function getRandomQuestion() {
  
     return deferred.promise;
 }
- 
+
