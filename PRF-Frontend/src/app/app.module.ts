@@ -22,6 +22,8 @@ import { RegisterComponent } from './register/register.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { CityService } from './utils/cities.service';
 import { SecureComponent } from './layouts/secure/secure.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { QuizService } from './utils/quiz.service';
 
 
 @NgModule({
@@ -32,7 +34,8 @@ import { SecureComponent } from './layouts/secure/secure.component';
     LoginComponent,
     RegisterComponent,
     StatisticComponent,
-    SecureComponent
+    QuizComponent,
+    SecureComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +50,7 @@ import { SecureComponent } from './layouts/secure/secure.component';
         AlertService,
         UserService,
         CityService,
+        QuizService,
         JwtInterceptorProvider,
         ErrorInterceptorProvider
     ],

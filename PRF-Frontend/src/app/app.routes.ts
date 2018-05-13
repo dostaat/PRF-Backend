@@ -4,8 +4,10 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {AuthGuard} from './_guards/auth.guard';
 import {HomeComponent} from './home/home.component';
+
 import {StatisticComponent} from './statistic/statistic.component';
 import {SecureComponent} from './layouts/secure/secure.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 
 export const appRoutes: Routes = [
@@ -17,6 +19,7 @@ export const appRoutes: Routes = [
          [
             {path: 'home', component: HomeComponent},
             {path: 'statistic', component: StatisticComponent}, 
+            {path: 'quiz', component: QuizComponent}
          ]
     },
     {path: '', component: SecureComponent, canActivate: [AuthGuard] , data: {roles:['admin']}, 
@@ -25,6 +28,6 @@ export const appRoutes: Routes = [
             //ide kell majd tenni a quiz kerdes felvetelet meg azokat amiket csak admin role-al szabad elerni
             //{path: 'statistic', component: StatisticComponent}, 
          ]
-    }
+    },
 ];
 

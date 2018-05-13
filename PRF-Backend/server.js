@@ -12,6 +12,7 @@ var bodyParser = require('body-parser');
 var app = express();
 require('./models/user.model');
 require('./models/cities.model');
+require('./models/quiz.model');
 
 
 var config = require('./config.json');
@@ -67,6 +68,8 @@ app.use(expressSession({
 app.use('/users', require('./controllers/users.controller'));
 
 app.use('/cities', require('./controllers/cities.controller'));
+
+app.use('/quiz', require('./controllers/quiz.controller'));
 
 
 app.listen(5000, function() {
