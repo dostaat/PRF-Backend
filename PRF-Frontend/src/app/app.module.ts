@@ -22,7 +22,6 @@ import { RegisterComponent } from './register/register.component';
 import { StatisticComponent } from './statistic/statistic.component';
 import { CityService } from './utils/cities.service';
 import { SecureComponent } from './layouts/secure/secure.component';
-import { PublicComponent } from './layouts/public/public.component';
 
 
 @NgModule({
@@ -33,8 +32,7 @@ import { PublicComponent } from './layouts/public/public.component';
     LoginComponent,
     RegisterComponent,
     StatisticComponent,
-    SecureComponent,
-    PublicComponent
+    SecureComponent
   ],
   imports: [
     BrowserModule,
