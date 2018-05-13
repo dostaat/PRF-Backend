@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { appConfig } from '../app.config';
 
 @Injectable()
 export class NodeService {
@@ -8,7 +9,7 @@ export class NodeService {
   constructor(private http: HttpClient) { }
 
   getGreeting(): Observable<any> {
-    return this.http.get('http://localhost:5000/rest/user/greeting');
+    return this.http.get(appConfig.apiUrl+'/rest/user/greeting');
   }
 
   registerUser(email: string, username: string, password: string): Observable<any> {
@@ -20,7 +21,7 @@ export class NodeService {
       headers: new HttpHeaders().set('Content-Type', 
       'application/x-www-form-urlencoded')
     };
-    return this.http.post('http://localhost:5000/rest/user/register', 
+    return this.http.post(appConfig.apiUrl+'/rest/user/register', 
     body.toString(), options);
   }
 
