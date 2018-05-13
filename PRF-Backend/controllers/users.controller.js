@@ -65,8 +65,8 @@ function getCurrent(req, res) {
  
 function update(req, res) {
     userService.update(req.params._id, req.body)
-        .then(function () {
-            res.json('success');
+        .then(function (set) {
+            res.json(set);
         })
         .catch(function (err) {
             res.status(400).send(err);

@@ -29,7 +29,7 @@ export class QuizComponent implements OnInit {
     private alertService: AlertService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.lost = false;
-    this.questionNum = 0;
+    this.questionNum = 1;
     this.gamePoints = 0;
   }
 
@@ -52,9 +52,12 @@ export class QuizComponent implements OnInit {
   checkAnswer(ans: string) {
     if(ans === this.quiz.answer) {
       this.currentUser.score += this.quiz.level;
-      this.userService.update(this.currentUser);
+      this.userService.update(this.currentUser).subscribe( currentUser => { (<Object>this.currentUser) = currentUser; } );
       this.gamePoints += this.quiz.level;
-      this.questionNum++; 
+      if(this.questionNum < 10) {
+        this.questionNum++;
+      }
+      this.loadRandomQuestion();
       console.log(this.currentUser.score);
     } else {
       this.lost = true;

@@ -124,7 +124,6 @@ function create(userParam) {
 }
  
 function update(_id, userParam) {
-    console.log("user service a backenden első rész");
     var deferred = Q.defer();
  
     // validation
@@ -151,7 +150,6 @@ function update(_id, userParam) {
     });
  
     function updateUser() {
-        console.log("user service a backenden");
         // fields to update
         var set = {
             firstName: userParam.firstName,
@@ -166,13 +164,12 @@ function update(_id, userParam) {
             set.hash = bcrypt.hashSync(userParam.password, 10);
         }
  
-        userModel.update(
+        userModel.findOneAndUpdate(
             { _id: mongoose.Types.ObjectId(_id) },
             { $set: set },
             function (err, doc) {
                 if (err) deferred.reject(err.name + ': ' + err.message);
- 
-                deferred.resolve();
+                deferred.resolve(doc);
             });
     }
  

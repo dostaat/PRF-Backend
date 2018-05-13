@@ -2,7 +2,7 @@
   <h2 class = "text-center"> Welcome to the game page {{currentUser.username}}!</h2>
   <div *ngIf="quiz!==undefined && !lost" class = "text-center">
     <p>{{quiz.question}}</p>
-    <button (click)="checkAnswer('A')">{{quiz.second_answer}}</button><br>
+    <button (click)="checkAnswer('A')">{{quiz.first_answer}}</button><br>
     <button (click)="checkAnswer('B')">{{quiz.second_answer}}</button><br>
     <button (click)="checkAnswer('C')">{{quiz.third_answer}}</button><br>
     <button (click)="checkAnswer('D')">{{quiz.fourth_answer}}</button><br>
