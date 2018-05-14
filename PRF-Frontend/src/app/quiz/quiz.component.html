@@ -1,11 +1,26 @@
 <div class="col-md-6 col-md-offset-3">
   <h2 class = "text-center"> Welcome to the game page {{currentUser.username}}!</h2>
   <div *ngIf="quiz!==undefined && !lost" class = "text-center">
-    <p>{{quiz.question}}</p>
-    <button (click)="checkAnswer('A')">{{quiz.first_answer}}</button><br>
-    <button (click)="checkAnswer('B')">{{quiz.second_answer}}</button><br>
-    <button (click)="checkAnswer('C')">{{quiz.third_answer}}</button><br>
-    <button (click)="checkAnswer('D')">{{quiz.fourth_answer}}</button><br>
+      <div class="modal-dialog">
+          <div class="modal-content">
+             <div class="modal-header">
+                <h3><span class="label label-warning" id="qid"></span>{{quiz.question}}</h3>
+            </div>
+            <div class="modal-body">
+                <div class="col-xs-3 col-xs-offset-5">
+                   <div id="loadbar" style="display: none;">
+                  </div>
+              </div>
+    
+              <div class="quiz" id="quiz">
+               <label class="btn btn-lg btn-primary btn-block" (click)="checkAnswer('A')"><span class="btn-label"></span> <input type="hidden" name="q_answer">{{quiz.first_answer}}</label>
+               <label class="btn btn-lg btn-primary btn-block" (click)="checkAnswer('B')"><span class="btn-label"></span> <input type="hidden" name="q_answer">{{quiz.second_answer}}</label>
+               <label class="btn btn-lg btn-primary btn-block" (click)="checkAnswer('C')"><span class="btn-label"></span> <input type="hidden" name="q_answer">{{quiz.third_answer}}</label>
+               <label class="btn btn-lg btn-primary btn-block" (click)="checkAnswer('D')"><span class="btn-label"></span> <input type="hidden" name="q_answer">{{quiz.fourth_answer}}</label>
+           </div>
+       </div>
+    </div>
+    </div>
   </div>
   <div *ngIf="lost" class = "text-center">
       <p>Congratulations, your points: {{gamePoints}}</p>
