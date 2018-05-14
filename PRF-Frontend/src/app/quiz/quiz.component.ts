@@ -52,7 +52,7 @@ export class QuizComponent implements OnInit {
   checkAnswer(ans: string) {
     if(ans === this.quiz.answer) {
       this.currentUser.score += this.quiz.level;
-      this.userService.update(this.currentUser).subscribe( currentUser => { (<Object>this.currentUser) = currentUser; } );
+      this.userService.updateScore(this.currentUser).subscribe( currentUser => { (<Object>this.currentUser) = currentUser; } );
       this.gamePoints += this.quiz.level;
       if(this.questionNum < 10) {
         this.questionNum++;

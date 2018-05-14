@@ -9,6 +9,7 @@ router.post('/register', register);
 router.get('/', getAll);
 router.get('/current', getCurrent);
 router.put('/:_id', update);
+router.put('/:_id', updateScore);
 router.delete('/:_id', _delete);
  
 module.exports = router;
@@ -72,7 +73,18 @@ function update(req, res) {
             res.status(400).send(err);
         });
 }
+
+function updateScore(req, res) {
+    userService.updateScore(req.params._id, req.body)
+        .then(function (set) {
+            res.json(set);
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
  
+
 function _delete(req, res) {
     userService.delete(req.params._id)
         .then(function () {

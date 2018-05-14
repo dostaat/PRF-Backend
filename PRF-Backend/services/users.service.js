@@ -18,6 +18,7 @@ service.getAll = getAll;
 service.getById = getById;
 service.create = create;
 service.update = update;
+service.updateScore = updateScore;
 service.delete = _delete;
  
 module.exports = service;
@@ -163,6 +164,36 @@ function update(_id, userParam) {
         if (userParam.password) {
             set.hash = bcrypt.hashSync(userParam.password, 10);
         }
+ 
+        userModel.findOneAndUpdate(
+            { _id: mongoose.Types.ObjectId(_id) },
+            { $set: set },
+            function (err, doc) {
+                if (err) deferred.reject(err.name + ': ' + err.message);
+                deferred.resolve(doc);
+            });
+    }
+ 
+    return deferred.promise;
+}
+
+function updateScore(_id, userParam) {
+    var deferred = Q.defer();
+    console.log("ide még elnéz?");
+ 
+    // validation
+    userModel.findById(_id, function (err, user) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+        console.log("ide bejön?");
+        updateUser();
+    });
+ 
+    function updateUser() {
+        console.log(userParam.score);
+        // fields to update
+        var set = {
+            score: userParam.score,
+        };
  
         userModel.findOneAndUpdate(
             { _id: mongoose.Types.ObjectId(_id) },
