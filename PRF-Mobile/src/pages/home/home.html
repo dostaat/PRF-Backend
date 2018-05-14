@@ -8,14 +8,18 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <h3>Welcome to QuickQuiz!</h3>
 
   <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way, but we think that
+    On the mobile application you are collecting scores for your city! 
+    Please allow to your mobile to identify your location, and then pick your city from the list below.
+    If it is not listed then you can add it at the "New City" menu entry.
+    Good luck!
   </p>
   <p *ngIf="gpsPos!==undefined">
-    your position is lat: {{gpsPos.x_coord}} , long: {{gpsPos.y_coord}}
+    Your position is lat: {{gpsPos.x_coord}} , long: {{gpsPos.y_coord}}
   </p>
+  <h3 *ngIf="selectedCity!==null"> Your selected city is: {{selectedCity}} </h3>
   <h3 *ngIf="nearbyCities!==undefined">Pick your city:</h3>
   
   <ion-list no-lines>
