@@ -11,13 +11,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { QuizmePage } from '../pages/quizme/quizme';
 import { Geolocation } from '@ionic-native/geolocation';
+import { NewCityPage} from '../pages/new-city/new-city';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    QuizmePage
+    QuizmePage,
+    NewCityPage
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     MyApp,
     HomePage,
     ListPage,
-    QuizmePage
+    QuizmePage,
+    NewCityPage
   ],
   providers: [
     Geolocation,
