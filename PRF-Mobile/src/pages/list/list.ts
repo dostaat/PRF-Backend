@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Cities } from '../../../../PRF-Frontend/src/app/_models/cities';
 import { HttpClient } from '@angular/common/http';
 import { not } from '@angular/compiler/src/output/output_ast';
+import { appConfig } from '../../app/app.config'
 
 
 @Component({
@@ -20,7 +21,7 @@ export class ListPage {
     this.loadAllCities();
   }
   private loadAllCities() {
-    this.http.get<Cities[]>('http://localhost:5000' + '/cities').subscribe(cities => { 
+    this.http.get<Cities[]>(appConfig.apiUrl + '/cities').subscribe(cities => { 
         this.cities = cities;
         this.orderCitiesByPoints();
         console.log(this.cities);
