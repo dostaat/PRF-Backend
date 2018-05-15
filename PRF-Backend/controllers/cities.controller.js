@@ -5,6 +5,7 @@ var cityService = require('../services/cities.service');
  
 // routes
 router.get('/', getAll);
+router.post('/', create);
 router.get('/current', getCurrent);
 router.put('/:_id', update);
 router.post('/getClosest',getClosest);
@@ -30,6 +31,16 @@ function getCurrent(req, res) {
             } else {
                 res.sendStatus(404);
             }
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function create(req,res) {
+    cityService.create(req.body)
+        .then(function (cities) {
+            res.send({"newCityName" : req.body.name, "status": "created successfully"});
         })
         .catch(function (err) {
             res.status(400).send(err);

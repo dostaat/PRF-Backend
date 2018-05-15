@@ -55,29 +55,30 @@ function create(citiesParam) {
     var deferred = Q.defer();
  
     // validation
-    console.log(citiesParam.citiname);
-    citiModel.findOne({ citiname: citiesParam.citiname },
+    console.log(citiesParam.name);
+    cityModel.findOne({ name: citiesParam.name },
         function (err, city) {
             if (err) deferred.reject(err.name + ': ' + err.message);
  
             if (city) {
                 // citiname already exists
-                deferred.reject('citiname "' + citiesParam.citiname + '" is already taken');
+                deferred.reject('citiname "' + citiesParam.name + '" is already taken');
             } else {
-                createCity();
+                createCity(citiesParam);
             }
         });
  
-    function createCity() {
-        
-        var city = _.omit(cityParam, 'password');
+    function createCity(cityParam) {        
   
-        console.log(city);
+        console.log(cityParam);
         
         cityModel.create(
-            city,
+            cityParam,
             function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message);
+                if (err) {
+                    console.log("Error in creation")
+                    deferred.reject(err.name + ': ' + err.message);
+                }
  
                 deferred.resolve();
             });

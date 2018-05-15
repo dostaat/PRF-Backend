@@ -1,3 +1,3 @@
 export const appConfig = {
-    apiUrl: 'https://a37bf072.ngrok.io'
+    apiUrl: 'https://45cece9e.ngrok.io'
 }

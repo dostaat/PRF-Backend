@@ -15,23 +15,22 @@
 
       <ion-item id="cityName">
         <ion-label floating >Name of the City</ion-label>
-        <ion-input type="text" [value]="newCityName"></ion-input>
+        <ion-input type="text" [(ngModel)] = "newCityName"></ion-input>
       </ion-item>
     
       <ion-item>
         <ion-label floating>X-coordinate</ion-label>
-        <ion-input type="number"></ion-input>
+        <ion-input type="number" [(ngModel)] = "xcoord"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label floating>Y-coordinate</ion-label>
-        <ion-input type="number"></ion-input>
+        <ion-input type="number" [(ngModel)] = "ycoord"></ion-input>
       </ion-item>
     
     </ion-list>
 
     <div padding>
       <button ion-button color="primary" block (click) = "AddCity ()">Add City</button>
-    </div>
-
+    </div>  
 </ion-content>

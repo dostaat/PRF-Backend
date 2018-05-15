@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from "@angular/common/http";
+import { IonicStorageModule } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -12,6 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { QuizmePage } from '../pages/quizme/quizme';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NewCityPage} from '../pages/new-city/new-city';
+import { NameConvert } from "../Utils/nameConverter";
+import { AlertController } from 'ionic-angular';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,7 @@ import { NewCityPage} from '../pages/new-city/new-city';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,9 +39,11 @@ import { NewCityPage} from '../pages/new-city/new-city';
     NewCityPage
   ],
   providers: [
+    AlertController,
     Geolocation,
     StatusBar,
-    SplashScreen,    
+    SplashScreen,
+    NameConvert,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
