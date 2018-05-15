@@ -6,8 +6,8 @@ var cityService = require('../services/cities.service');
 // routes
 router.get('/', getAll);
 router.post('/', create);
-router.get('/current', getCurrent);
-router.put('/:_id', update);
+router.put('/', update);
+router.post('/getByName', getByName);
 router.post('/getClosest',getClosest);
  
 module.exports = router;
@@ -17,20 +17,6 @@ function getAll(req, res) {
     cityService.getAll()
         .then(function (cities) {
             res.send(cities);
-        })
-        .catch(function (err) {
-            res.status(400).send(err);
-        });
-}
- 
-function getCurrent(req, res) {
-    cityService.getById(req.cities.sub)
-        .then(function (cities) {
-            if (cities) {
-                res.send(cities);
-            } else {
-                res.sendStatus(404);
-            }
         })
         .catch(function (err) {
             res.status(400).send(err);
@@ -48,9 +34,21 @@ function create(req,res) {
 }
  
 function update(req, res) {
-    cityService.update(req.params._id, req.body)
+    console.log("I am about updating city " + req.body.name)
+    cityService.update(req.body)
         .then(function () {
             res.json('success');
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function getByName(req, res) {
+    console.log("I am about getting city " + req.body)
+    cityService.getByName(req.body.name)
+        .then(function (cities) {
+            res.json(cities);
         })
         .catch(function (err) {
             res.status(400).send(err);

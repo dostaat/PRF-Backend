@@ -17,6 +17,7 @@ service.create = create;
 service.update = update;
 service.delete = _delete;
 service.getClosest = getClosest;
+service.getByName = getByName;
  
 module.exports = service;
  
@@ -43,14 +44,33 @@ function getById(_id) {
         if (err) deferred.reject(err.name + ': ' + err.message);
  
         if (cities) {
-            deferred.resolve(_.omit(cities, 'hash'));
+            deferred.resolve(cities);
         } else {
             deferred.resolve();
         }
     });
     return deferred.promise;
 }
+
+function getByName(cityname) {
+    var deferred = Q.defer();
  
+    console.log("Trying to fetch city "+ cityname +" from db");
+    cityModel.findOne({ name: cityname },
+        function (err, cities) {
+        console.log(cities);
+        console.log(err);
+        if (err) deferred.reject(err.name + ': ' + err.message);
+ 
+        if (cities) {
+            deferred.resolve(cities);
+        } else {
+            deferred.resolve();
+        }
+    });
+    return deferred.promise;
+}
+
 function create(citiesParam) {
     var deferred = Q.defer();
  
@@ -87,39 +107,29 @@ function create(citiesParam) {
     return deferred.promise;
 }
  
-function update(_id, cityParam) {
+function update(cityParam) {
     var deferred = Q.defer();
  
-    // validation
-    cityModel.findById(_id, function (err, city) {
-        if (err) deferred.reject(err.name + ': ' + err.message);
+    // validation    
+    cityModel.findOne(
+        { name:cityParam.name },
+        function (err, city) {
+            if (err) deferred.reject(err.name + ': ' + err.message);
+            
+            if (city) {
+                updateCity(city._id);
+            } else {
+                deferred.reject('Cityname "' + req.body.name + '" is not found')
+            }
+                
+        }       
+    );
  
-        if (city.cityname !== cityParam.cityname) {
-            cityModel.findOne(
-                { cityname:cityParam.cityname },
-                function (err, city) {
-                    if (err) deferred.reject(err.name + ': ' + err.message);
- 
-                    if (city) {
-                        deferred.reject('cityname "' + req.body.cityname + '" is already taken')
-                    } else {
-                        updateCity();
-                    }
-                });
-        } else {
-            updateCity();
-        }
-    });
- 
-    function updateCity() {
+    function updateCity(_id) {
         // fields to update
         var set = {
             point: cityParam.point,
-        };
- 
-        if (cityParam.point) {
-            set.hash = bcrypt.hashSync(cityParam.password, 10);
-        }
+        };         
  
         cityModel.update(
             { _id: mongoose.Types.ObjectId(_id) },

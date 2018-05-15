@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { not } from '@angular/compiler/src/output/output_ast';
 import { appConfig } from '../../app/app.config'
 import {NameConvert} from '../../Utils/nameConverter';
+import { Storage } from '@ionic/storage';
 
 
 @Component({
@@ -16,10 +17,20 @@ export class ListPage {
   selectedItem: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
+  selectedCity: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private http: HttpClient, public nC: NameConvert) {
-    this.selectedItem = navParams.get('item');
-    this.loadAllCities();
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private http: HttpClient, 
+    public nC: NameConvert,
+    public storage: Storage) {
+      this.selectedItem = navParams.get('item');
+      this.loadAllCities();
+      storage.get("selectedCity").then( (cityName) => {
+        this.selectedCity = cityName;
+      });
   }
   private loadAllCities() {
     this.http.get<Cities[]>(appConfig.apiUrl + '/cities').subscribe(cities => { 

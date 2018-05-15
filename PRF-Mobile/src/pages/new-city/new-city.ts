@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
-import {HttpClient} from "@angular/common/http";
-import {appConfig} from "../../app/app.config";
+import { HttpClient } from "@angular/common/http";
+import { appConfig } from "../../app/app.config";
 import { NameConvert } from "../../Utils/nameConverter";
 import { Cities } from "../../_modules/cities";
 import { AlertController } from 'ionic-angular';

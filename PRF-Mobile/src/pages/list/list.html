@@ -6,30 +6,59 @@
     <ion-title>City ranks</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-card>
-  <ion-card-header>
-    Welcome to the after game layout
-  </ion-card-header>
-  <ion-card-content>
-    Here is the list of the 5 best cities:
-  </ion-card-content>
-</ion-card>
-<ion-content>
-  <ion-list *ngFor="let item of cities; let cityIndex = index">
-    <ion-row  *ngIf="cityIndex < 5">
-        <ion-col width-25 text-center>
-            {{item.point}}
-        </ion-col>
-        <ion-col width-25 text-center>
-            {{nC.toFirstUpper(item.name)}}
-        </ion-col>
-        <ion-col width-25 text-center>
-            {{item.x_coordinate}}
-        </ion-col>
-        <ion-col width-25 text-center>
-            {{item.y_coordinate}}
 
-        </ion-col>
-    </ion-row>
-  </ion-list>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      The top 5 cities
+    </ion-card-header>
+    <ion-card-content>        
+      <ion-list>
+          <ion-row class="row header">
+              <ion-col width-25 text-center class="rank">                
+                  Rank
+              </ion-col>
+              <ion-col width-25 text-center>                
+                Points
+              </ion-col>
+              <ion-col width-25 text-center>                
+                City
+              </ion-col>              
+          </ion-row>
+      </ion-list>
+      <ion-list *ngFor="let item of cities; let cityIndex = index">                
+        <ion-row *ngIf="cityIndex < 5">
+            <ion-col width-25 text-center class="rank">
+                {{cityIndex+1}}
+            </ion-col>
+            <ion-col width-25 text-center>
+                {{item.point}}
+            </ion-col>
+            <ion-col width-25 text-center>
+                {{nC.toFirstUpper(item.name)}}
+            </ion-col>            
+        </ion-row>
+      </ion-list>  
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="selectedCity !== undefined">
+    <ion-card-header>
+      Your city's position
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list *ngFor="let item of cities; let cityIndex = index">                
+          <ion-row *ngIf="item.name == selectedCity">
+            <ion-col width-25 text-center class="rank">
+              {{cityIndex+1}}
+            </ion-col>
+            <ion-col width-25 text-center>
+                {{item.point}}
+            </ion-col>
+            <ion-col width-25 text-center>
+                {{nC.toFirstUpper(item.name)}}
+            </ion-col>            
+          </ion-row>
+      </ion-list>  
+    </ion-card-content>
+  </ion-card>
 </ion-content>
