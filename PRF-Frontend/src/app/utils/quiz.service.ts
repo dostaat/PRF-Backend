@@ -17,4 +17,8 @@ export class QuizService {
     getRandomQuestion() {
         return this.http.get<Quiz>(appConfig.apiUrl + '/quiz/random');
     }
+
+    getById(_id: string) {
+        return this.http.post<Quiz>(appConfig.apiUrl + '/quiz/one', {"id": _id});
+    }
 }

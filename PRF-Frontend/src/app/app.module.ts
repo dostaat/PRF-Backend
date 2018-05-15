@@ -24,6 +24,8 @@ import { CityService } from './utils/cities.service';
 import { SecureComponent } from './layouts/secure/secure.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { QuizService } from './utils/quiz.service';
+import { QuestionsService } from './utils/questions.service';
+import { QuestionsComponent } from './questions/questions.component';
 
 
 @NgModule({
@@ -36,6 +38,7 @@ import { QuizService } from './utils/quiz.service';
     StatisticComponent,
     QuizComponent,
     SecureComponent,
+    QuestionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { QuizService } from './utils/quiz.service';
         UserService,
         CityService,
         QuizService,
+        QuestionsService,
         JwtInterceptorProvider,
         ErrorInterceptorProvider
     ],

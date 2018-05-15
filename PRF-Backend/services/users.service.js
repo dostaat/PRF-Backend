@@ -179,17 +179,14 @@ function update(_id, userParam) {
 
 function updateScore(_id, userParam) {
     var deferred = Q.defer();
-    console.log("ide még elnéz?");
  
     // validation
     userModel.findById(_id, function (err, user) {
         if (err) deferred.reject(err.name + ': ' + err.message);
-        console.log("ide bejön?");
         updateUser();
     });
  
     function updateUser() {
-        console.log(userParam.score);
         // fields to update
         var set = {
             score: userParam.score,

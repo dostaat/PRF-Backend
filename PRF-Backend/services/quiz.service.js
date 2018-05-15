@@ -13,6 +13,7 @@ var service = {};
  
 service.getAll = getAll;
 service.getRandomQuestion = getRandomQuestion;
+service.getOne = getOne;
  
 module.exports = service;
  
@@ -49,3 +50,18 @@ function getRandomQuestion() {
     return deferred.promise;
 }
 
+function getOne(_id) {
+    var deferred = Q.defer();
+
+    quizModel.findById(_id, function (err, quiz) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+ 
+        if (quiz) {
+            deferred.resolve(quiz);
+        } else {
+            deferred.resolve();
+        }
+    });
+ 
+    return deferred.promise;
+}

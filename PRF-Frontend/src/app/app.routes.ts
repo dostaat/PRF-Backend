@@ -8,6 +8,7 @@ import {HomeComponent} from './home/home.component';
 import {StatisticComponent} from './statistic/statistic.component';
 import {SecureComponent} from './layouts/secure/secure.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { QuestionsComponent } from './questions/questions.component';
 
 
 export const appRoutes: Routes = [
@@ -19,7 +20,8 @@ export const appRoutes: Routes = [
          [
             {path: 'home', component: HomeComponent},
             {path: 'statistic', component: StatisticComponent}, 
-            {path: 'quiz', component: QuizComponent}
+            {path: 'quiz', component: QuizComponent},
+            {path: 'questions', component: QuestionsComponent}
          ]
     },
     {path: '', component: SecureComponent, canActivate: [AuthGuard] , data: {roles:['admin']}, 
