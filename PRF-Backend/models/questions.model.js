@@ -8,7 +8,7 @@ var questionsSchema = new mongoose.Schema({
   },
   list : {
     type : Array,
-    "default" : []
+    default : []
   },
 }, { collection: 'questions' });
 
