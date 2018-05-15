@@ -1,7 +1,7 @@
 <!-- main app container -->
 <div class="jumbotron">
     <div class="container">
-        <div class="col-sm-8 col-sm-offset-2">
+        <div class="col-sm-12 col-sm-offset-2">
             <alert></alert>
             <router-outlet></router-outlet>
         </div>
@@ -11,7 +11,7 @@
 <!-- credits -->
 <div class="text-center">
     <p>
-        <a href="https://github.com/dostaat/PRF-Backend" target="_top">Quiz Poject Repository</a>        
+        <a href="https://github.com/dostaat/PRF-Quiz" target="_top">Quiz Poject Repository</a>        
     </p>
     <form (ngSubmit)="setUrl()">
         <button [disabled]="loading" class="btn btn-primary">Set server URL</button>    
