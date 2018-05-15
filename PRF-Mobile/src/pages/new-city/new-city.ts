@@ -6,6 +6,7 @@ import { appConfig } from "../../app/app.config";
 import { NameConvert } from "../../Utils/nameConverter";
 import { Cities } from "../../_modules/cities";
 import { AlertController } from 'ionic-angular';
+import { QuizmePage } from '../quizme/quizme';
 
 
 /**
@@ -66,6 +67,7 @@ export class NewCityPage implements OnInit {
         console.log(respond)
         this.presentAlert(this.newCityName);
         this.storage.set("selectedCity",this.newCityObj.name);
+        this.navCtrl.setRoot(QuizmePage)
       });
     
   }
