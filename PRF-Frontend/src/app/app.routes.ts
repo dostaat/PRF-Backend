@@ -10,6 +10,7 @@ import {SecureComponent} from './layouts/secure/secure.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { NewquizComponent } from './newquiz/newquiz.component';
+import { DeletequizComponent } from './deletequiz/deletequiz.component';
 
 
 export const appRoutes: Routes = [
@@ -30,7 +31,8 @@ export const appRoutes: Routes = [
          [
             //ide kell majd tenni a quiz kerdes felvetelet meg azokat amiket csak admin role-al szabad elerni
             //{path: 'statistic', component: StatisticComponent}, 
-            {path: 'newquiz', component: NewquizComponent}
+            {path: 'newquiz', component: NewquizComponent},
+            {path: 'deletequiz', component: DeletequizComponent}
          ]
     },
 ];

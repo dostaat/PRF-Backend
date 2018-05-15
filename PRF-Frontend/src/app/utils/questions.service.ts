@@ -21,4 +21,8 @@ export class QuestionsService {
     create(list: Questions) {
         return this.http.post(appConfig.apiUrl + '/questions/create', list);
     }
+
+    delete(_id: string) {
+        return this.http.delete(appConfig.apiUrl + '/questions/' + _id);
+    }
 }
