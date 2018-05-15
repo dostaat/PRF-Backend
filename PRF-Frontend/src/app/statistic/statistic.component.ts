@@ -15,7 +15,6 @@ import { Cities } from '../_models/cities';
 export class StatisticComponent implements OnInit, OnChanges {
     currentUser: User;
     users: User[] = [];
-    cities: Cities[] = [];
     returnUrl: string;
  
     constructor(private userService: UserService, 
@@ -26,32 +25,28 @@ export class StatisticComponent implements OnInit, OnChanges {
     }
 
     ngOnChanges() {
-        this.loadAllCities();
+        this.loadAllUsers();
     }
  
     ngOnInit() {
 
         this.loadAllUsers();
-        this.loadAllCities();
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
     }
  
     private loadAllUsers() {
-        this.userService.getAll().subscribe(users => { this.users = users; });
-    }
-
-    private loadAllCities() {
-        this.citiesService.getAll().subscribe(cities => { 
-            this.cities = cities;
-            this.orderCitiesByPoints();
+        this.userService.getAll().subscribe(users => { 
+            this.users = users; 
+            this.orderUsersByPoints();
         });
     }
-    
-    private orderCitiesByPoints() {
-        this.cities.sort((city1, city2) => {
-            return city1.point - city2.point;
+   
+    private orderUsersByPoints() {
+        this.users.sort((user1, user2) => {
+            return user2.score - user1.score;
         })
+        console.log(this.users);
     }
 }
 

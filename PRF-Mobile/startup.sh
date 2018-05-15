@@ -5,4 +5,6 @@ ionic cordova plugin add cordova-plugin-geolocation --variable GEOLOCATION_USAGE
 npm install --save @ionic-native/geolocation
 ionic cordova plugin add cordova-plugin-advanced-http
 npm install --save @ionic-native/http
+ionic cordova plugin add cordova-sqlite-storage
+npm install --save @ionic/storage
 exit

@@ -57,6 +57,10 @@ app.use(expressJwt({
         '/users/authenticate',
         '/users/register',
         '/cities/getClosest',
+        '/cities',
+        '/cities/getByName',        
+        '/quiz',
+        '/quiz/random'
         //ide kell meg bemasolni azokat az eleresi utakat, amikhez nem kell bejelentkezni        
         ] 
 }));

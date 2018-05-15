@@ -26,7 +26,7 @@ ionic start QuickQuiz sidemenu --no-git --type=ionic-angular
 mongoimport --host ds117189.mlab.com:17189 -u admin -p prfPassword123 --db prfquiz --collection Quiz --type csv --headerline --file /home/szkabel/Downloads/loim.csv
 
 Start ngrok:
-./ngrok http 4200 -host-header="localhost:8080"
+./ngrok http 4200 -host-header="localhost:4200"
 
 1. Kérdés: hogyan lehet összehangolni különböző gépeken futó szervert és klienst a bemutatóhoz?
 ngrok - ingyenes program, csak le kell tölteni az ngrok.com-ról és kicsomagolni
