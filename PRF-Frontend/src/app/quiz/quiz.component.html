@@ -1,6 +1,6 @@
 <div class="col-md-6 col-md-offset-3">
   <h2 class = "text-center"> Good luck {{currentUser.username}}!</h2>
-  <div *ngIf="quiz!==undefined && !lost" class = "text-center">
+  <div *ngIf="quiz!==undefined" class = "text-center">
       <div class="modal-dialog">
           <div class="modal-content">
              <div class="modal-header">
@@ -21,12 +21,5 @@
        </div>
     </div>
     </div>
-  </div>
-  <div *ngIf="lost" class = "text-center">
-      <p>Congratulations, your points: {{gamePoints}}</p>
-      <p><a class="btn btn-success btn-lg" [routerLink]="['/quiz']" (click)="lost=false; reset()">restart game</a></p>
-    </div>
-  <div class="text-center"> 
-      <p><a class="btn btn-success btn-lg" [routerLink]="['/home']">back to menu</a></p>
   </div>
 </div>

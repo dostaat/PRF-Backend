@@ -26,7 +26,7 @@ export class UserService {
     }
 
     updateScore(user: User) {
-        return this.http.put(appConfig.apiUrl + '/users/' + user._id, user);
+        return this.http.put(appConfig.apiUrl + '/users/updateScore/' + user._id, user);
     }
 
     delete(_id: string) {

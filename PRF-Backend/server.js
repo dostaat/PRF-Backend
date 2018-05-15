@@ -13,6 +13,7 @@ var app = express();
 require('./models/user.model');
 require('./models/cities.model');
 require('./models/quiz.model');
+require('./models/questions.model');
 
 
 var config = require('./config.json');
@@ -71,6 +72,8 @@ app.use('/users', require('./controllers/users.controller'));
 app.use('/cities', require('./controllers/cities.controller'));
 
 app.use('/quiz', require('./controllers/quiz.controller'));
+
+app.use('/questions', require('./controllers/questions.controller'));
 
 
 app.listen(5000, function() {

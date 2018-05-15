@@ -9,7 +9,7 @@ router.post('/register', register);
 router.get('/', getAll);
 router.get('/current', getCurrent);
 router.put('/:_id', update);
-router.put('/:_id', updateScore);
+router.put('/updateScore/:_id', updateScore);
 router.delete('/:_id', _delete);
  
 module.exports = router;

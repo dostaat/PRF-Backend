@@ -1,30 +1,19 @@
 var config = require('../config.json');
 var express = require('express');
 var router = express.Router();
-var quizService = require('../services/quiz.service');
+var questionsService = require('../services/questions.service');
  
 // routes
 router.get('/', getAll);
-router.get('/random', getRandom);
 router.post('/one', getOne);
  
 module.exports = router;
 
  
 function getAll(req, res) {
-    quizService.getAll()
-        .then(function (questions) {
-            res.send(questions);
-        })
-        .catch(function (err) {
-            res.status(400).send(err);
-        });
-}
-
-function getRandom(req, res) {
-    quizService.getRandomQuestion(req.params.level)
-        .then(function (quiz) {
-            res.json(quiz);
+    questionsService.getAll()
+        .then(function (list) {
+            res.send(list);
         })
         .catch(function (err) {
             res.status(400).send(err);
@@ -32,7 +21,7 @@ function getRandom(req, res) {
 }
 
 function getOne(req, res) {
-    quizService.getOne(req.body.id)
+    questionsService.getOneList(req.body.id)
         .then(function (one) {
             res.json(one);
         })

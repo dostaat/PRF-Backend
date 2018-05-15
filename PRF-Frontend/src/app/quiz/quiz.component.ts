@@ -28,14 +28,12 @@ export class QuizComponent implements OnInit {
     private router: Router,
     private alertService: AlertService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    this.lost = false;
     this.questionNum = 1;
     this.gamePoints = 0;
   }
 
   ngOnInit() {
 
-    this.loadAllQuestions();
     this.loadRandomQuestion();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 
@@ -58,18 +56,12 @@ export class QuizComponent implements OnInit {
         this.questionNum++;
       }
       this.loadRandomQuestion();
-      console.log(this.currentUser.score);
     } else {
       this.lost = true;
       this.questionNum = 0;
+      window.alert("Congratulations, you've earned " + this.gamePoints + " points!");
+      this.router.navigateByUrl('/home');
     }
-  }
-
-  reset() {
-    this.lost = false;
-    this.questionNum = 0;
-    this.gamePoints = 0;
-    this.loadRandomQuestion();
   }
 
 }
