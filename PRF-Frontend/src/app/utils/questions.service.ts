@@ -19,6 +19,6 @@ export class QuestionsService {
     }
 
     create(list: Questions) {
-        return this.http.post(appConfig.apiUrl + '/questions/', list);
+        return this.http.post(appConfig.apiUrl + '/questions/create', list);
     }
 }

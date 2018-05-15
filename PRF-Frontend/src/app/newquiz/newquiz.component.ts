@@ -55,6 +55,8 @@ export class NewquizComponent implements OnInit {
       this.newList.list.push(oneItem);
     }
     this.questionsService.create(this.newList).subscribe( newList => { this.newList = this.newList; } );
+    window.alert("New list saved, with the name " + this.newname);
+    this.router.navigateByUrl('/home');
   }
 
 }
