@@ -26,6 +26,7 @@ import { QuizComponent } from './quiz/quiz.component';
 import { QuizService } from './utils/quiz.service';
 import { QuestionsService } from './utils/questions.service';
 import { QuestionsComponent } from './questions/questions.component';
+import { NewquizComponent } from './newquiz/newquiz.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { QuestionsComponent } from './questions/questions.component';
     QuizComponent,
     SecureComponent,
     QuestionsComponent,
+    NewquizComponent,
   ],
   imports: [
     BrowserModule,

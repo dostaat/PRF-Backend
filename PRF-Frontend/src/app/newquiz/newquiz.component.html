@@ -1,0 +1,13 @@
+<div class="container">
+    <h2>Create new quiz list</h2>
+    <label>Give a name to your question list:</label>
+    <input type="text" class="form-control" [(ngModel)]="newname">
+    <button class="btn btn-primary" (click)="save(newname)">Save new list</button>
+    <br>
+    <label>Pick the questions for your question list:</label>
+    <div *ngIf="questions!==undefined">
+        <ul class="list-group" *ngFor="let quiz of questions">
+            <li class="list-group-item btn" (click)=addNew(quiz._id)><a>{{quiz.question}}</a></li>
+        </ul>
+    </div>    
+  </div>

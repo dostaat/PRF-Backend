@@ -18,4 +18,7 @@ export class QuestionsService {
         return this.http.post<Questions>(appConfig.apiUrl + '/questions/one', {"id": _id});
     }
 
+    create(list: Questions) {
+        return this.http.post(appConfig.apiUrl + '/questions/', list);
+    }
 }
