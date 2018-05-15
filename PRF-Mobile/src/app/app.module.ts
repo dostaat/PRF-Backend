@@ -13,6 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { QuizmePage } from '../pages/quizme/quizme';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NewCityPage} from '../pages/new-city/new-city';
+import { NameConvert } from "../Utils/nameConverter";
+import { AlertController } from 'ionic-angular';
 
 @NgModule({
   declarations: [
@@ -37,9 +39,11 @@ import { NewCityPage} from '../pages/new-city/new-city';
     NewCityPage
   ],
   providers: [
+    AlertController,
     Geolocation,
     StatusBar,
-    SplashScreen,    
+    SplashScreen,
+    NameConvert,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

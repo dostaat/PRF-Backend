@@ -19,12 +19,12 @@
   <p *ngIf="gpsPos!==undefined">
     Your position is lat: {{gpsPos.x_coord}} , long: {{gpsPos.y_coord}}
   </p>
-  <h3 *ngIf="selectedCity!==null"> Your selected city is: {{selectedCity}} </h3>
+  <h3 *ngIf="selectedCity!==null"> Your selected city is: {{nC.toFirstUpper(selectedCity)}} </h3>
   <h3 *ngIf="nearbyCities!==undefined">Pick your city:</h3>
   
   <ion-list no-lines>
       <button ion-item *ngFor="let city of nearbyCities" (click)="itemSelected(city)">
-        {{ city.name }}
+        {{ nC.toFirstUpper(city.name) }}
       </button>
     </ion-list>
 
