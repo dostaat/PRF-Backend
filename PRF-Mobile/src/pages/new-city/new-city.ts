@@ -65,6 +65,7 @@ export class NewCityPage implements OnInit {
       respond => { 
         console.log(respond)
         this.presentAlert(this.newCityName);
+        this.storage.set("selectedCity",this.newCityObj.name);
       });
     
   }
