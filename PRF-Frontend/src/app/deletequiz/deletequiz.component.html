@@ -1,0 +1,9 @@
+<div class="container">
+    <h2>Delete quiz lists</h2>
+    <label>Cick on the quiz list you want to delete</label>
+    <div *ngIf="questions!==undefined">
+        <ul class="list-group" *ngFor="let list of lists">
+            <li class="list-group-item btn" (click)=deleteQuiz(list._id)><a>{{list.name}}</a></li>
+        </ul>
+    </div>    
+  </div>
