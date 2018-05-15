@@ -36,7 +36,7 @@ export class StatisticComponent implements OnInit, OnChanges {
     }
  
     private loadAllUsers() {
-        this.userService.getAll().subscribe(users => { 
+        this.userService.getPlayers().subscribe(users => { 
             this.users = users; 
             this.orderUsersByPoints();
         });

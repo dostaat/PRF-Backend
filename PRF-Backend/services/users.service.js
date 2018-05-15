@@ -20,6 +20,7 @@ service.create = create;
 service.update = update;
 service.updateScore = updateScore;
 service.delete = _delete;
+service.getPlayers = getPlayers;
  
 module.exports = service;
  
@@ -214,6 +215,23 @@ function _delete(_id) {
  
             deferred.resolve();
         });
+ 
+    return deferred.promise;
+}
+
+function getPlayers() {
+    var deferred = Q.defer();
+    console.log("I am about listing users...");
+    userModel.where({role: 'player'}).find({}, function (err, users) {
+        if (err) deferred.reject(err.name + ': ' + err.message);
+ 
+        // return users (without hashed passwords)
+        users = _.map(users, function (user) {
+            return _.omit(user, 'hash');
+        });
+ 
+        deferred.resolve(users);
+    });
  
     return deferred.promise;
 }
