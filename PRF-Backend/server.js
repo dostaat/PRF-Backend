@@ -14,7 +14,7 @@ require('./models/user.model');
 require('./models/cities.model');
 require('./models/quiz.model');
 require('./models/questions.model');
-
+var questionsService = require('./services/questions.service');
 
 var config = require('./config.json');
 var cors = require('cors');
@@ -33,7 +33,16 @@ mongoose.connect(dbUrl,{useMongoClient: true});
 mongoose.connection.on('connected', function() {
     console.log('Mongoose default connection open');
     if (process.env.DEBUG_QUIZ) {
-        var questions = mongoose.model('questions');
+        console.log('I am about to export quizes');        
+
+        var questionsModel = mongoose.model('questions');        
+        questionsService.getAll()
+        .then(function (list) {
+            console.log("Todo: here it is not called");
+        })
+        .catch(function (err) {
+            console.log(err)
+        });
         process.exit(0);//this one stops everything
     }         
 });
