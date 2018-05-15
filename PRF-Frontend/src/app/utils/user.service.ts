@@ -32,4 +32,8 @@ export class UserService {
     delete(_id: string) {
         return this.http.delete(appConfig.apiUrl + '/users/' + _id);
     }
+    
+    getPlayers() {
+        return this.http.get<User[]>(appConfig.apiUrl + '/users/players');
+    }
 }

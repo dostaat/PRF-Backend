@@ -11,6 +11,7 @@ router.get('/current', getCurrent);
 router.put('/:_id', update);
 router.put('/updateScore/:_id', updateScore);
 router.delete('/:_id', _delete);
+router.get('/players', getPlayers);
  
 module.exports = router;
  
@@ -89,6 +90,16 @@ function _delete(req, res) {
     userService.delete(req.params._id)
         .then(function () {
             res.json('success');
+        })
+        .catch(function (err) {
+            res.status(400).send(err);
+        });
+}
+
+function getPlayers(req, res) {
+    userService.getPlayers()
+        .then(function (users) {
+            res.send(users);
         })
         .catch(function (err) {
             res.status(400).send(err);
