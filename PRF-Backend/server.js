@@ -31,6 +31,10 @@ mongoose.connect(dbUrl,{useMongoClient: true});
 
 mongoose.connection.on('connected', function() {
     console.log('Mongoose default connection open');
+    if (process.env.DEBUG_QUIZ) {
+        var questions = mongoose.model('questions');
+        process.exit(0);//this one stops everything
+    }         
 });
 
 mongoose.connection.on('error', function(err) {
@@ -76,7 +80,10 @@ app.use('/cities', require('./controllers/cities.controller'));
 
 app.use('/quiz', require('./controllers/quiz.controller'));
 
-
-app.listen(5000, function() {
-    console.log('The server is running');
-});
+if (process.env.DEBUG_QUIZ) {
+    console.log("Now we are in Debug option");    
+} else {
+    app.listen(5000, function() {
+        console.log('The server is running');
+    });    
+}
