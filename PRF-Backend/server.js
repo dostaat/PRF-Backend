@@ -14,7 +14,7 @@ require('./models/user.model');
 require('./models/cities.model');
 require('./models/quiz.model');
 require('./models/questions.model');
-
+var questionsService = require('./services/questions.service');
 
 var config = require('./config.json');
 var cors = require('cors');
@@ -32,6 +32,19 @@ mongoose.connect(dbUrl,{useMongoClient: true});
 
 mongoose.connection.on('connected', function() {
     console.log('Mongoose default connection open');
+    if (process.env.DEBUG_QUIZ) {
+        console.log('I am about to export quizes');        
+
+        var questionsModel = mongoose.model('questions');        
+        questionsService.getAll()
+        .then(function (list) {
+            console.log("Todo: here it is not called");
+        })
+        .catch(function (err) {
+            console.log(err)
+        });
+        process.exit(0);//this one stops everything
+    }         
 });
 
 mongoose.connection.on('error', function(err) {
@@ -79,7 +92,10 @@ app.use('/quiz', require('./controllers/quiz.controller'));
 
 app.use('/questions', require('./controllers/questions.controller'));
 
-
-app.listen(5000, function() {
-    console.log('The server is running');
-});
+if (process.env.DEBUG_QUIZ) {
+    console.log("Now we are in Debug option");    
+} else {
+    app.listen(5000, function() {
+        console.log('The server is running');
+    });    
+}
